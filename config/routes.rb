@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   default_url_options host: Rails.application.config.host
   mount MissionControl::Jobs::Engine, at: "/admin/jobs"
+  mount Pico::Billing::Engine, at: "/billing"
 
   post "/webhook/resend", to: "webhook#resend"
 
@@ -56,6 +57,8 @@ Rails.application.routes.draw do
 
         get :embedding
         patch :embedding, action: :update_embedding, as: :update_embedding
+
+        get :billing
       end
 
       resources :subscribers, only: [ :index, :show ], path: "subscribers", module: "newsletters" do

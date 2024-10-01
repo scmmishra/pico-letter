@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/scmmishra/pico-billing.git
+  revision: d3b65f490345448ec69a73db6a30cf953493f3ec
+  branch: main
+  specs:
+    pico-billing (0.2.0)
+      rails (>= 7.1.3.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -129,9 +137,9 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
-    dotenv (3.1.2)
-    dotenv-rails (3.1.2)
-      dotenv (= 3.1.2)
+    dotenv (3.1.4)
+    dotenv-rails (3.1.4)
+      dotenv (= 3.1.4)
       railties (>= 6.1)
     drb (2.2.1)
     erb-formatter (0.7.3)
@@ -148,6 +156,11 @@ GEM
       railties (>= 5.0.0)
     faker (3.4.2)
       i18n (>= 1.8.11, < 2)
+    faraday (2.11.0)
+      faraday-net_http (>= 2.0, < 3.4)
+      logger
+    faraday-net_http (3.3.0)
+      net-http
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
@@ -161,7 +174,7 @@ GEM
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     image_processing (1.13.0)
       mini_magick (>= 4.9.5, < 5)
@@ -171,7 +184,7 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.7.2)
-    irb (1.14.0)
+    irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jbuilder (2.12.0)
@@ -199,6 +212,8 @@ GEM
     launchy (3.0.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
+    lemonsqueezy (1.0.1)
+      faraday (~> 2.0)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     logger (1.6.1)
@@ -237,6 +252,8 @@ GEM
     msgpack (1.7.2)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.16)
       date
       net-protocol
@@ -428,6 +445,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    uri (0.13.1)
     useragent (0.16.10)
     valid_email2 (5.3.0)
       activemodel (>= 3.2)
@@ -437,7 +455,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webrick (1.8.1)
+    webrick (1.8.2)
     websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -471,12 +489,14 @@ DEPENDENCIES
   jwt
   kaminari
   kramdown
+  lemonsqueezy (~> 1.0)
   letter_opener
   logtail-rails (~> 0.2.7)
   lucide-rails (~> 0.4.0)
   mission_control-jobs
   nokogiri
   pg (~> 1.5)
+  pico-billing!
   premailer-rails
   puma (>= 5.0)
   rack-mini-profiler
