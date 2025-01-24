@@ -17,6 +17,7 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
+
 class Session < ApplicationRecord
   has_secure_token
   belongs_to :user

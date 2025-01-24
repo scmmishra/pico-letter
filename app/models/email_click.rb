@@ -18,5 +18,6 @@
 #  fk_rails_...  (email_id => emails.id)
 #  fk_rails_...  (post_id => posts.id)
 #
+
 class EmailClick < ApplicationRecord
 end

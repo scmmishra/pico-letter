@@ -3,9 +3,9 @@
 # Table name: users
 #
 #  id              :bigint           not null, primary key
-#  active          :boolean
 #  additional_data :jsonb
 #  bio             :text
+#  blocked_at      :datetime
 #  email           :string           not null
 #  is_superadmin   :boolean          default(FALSE)
 #  limits          :jsonb
@@ -20,7 +20,10 @@
 #  index_users_on_is_superadmin  (is_superadmin)
 #
 class User < ApplicationRecord
+  include Tokenable
+
   has_secure_password :password, validations: true
+  generates_token_for :verification, expires_in: 7.days
 
   has_many :sessions, dependent: :destroy
   has_many :newsletters, dependent: :destroy
@@ -33,16 +36,35 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :bio, length: { maximum: 500 }
 
-  scope :active, -> { where(active: true) }
-  before_create :activate_user
+  scope :active, -> { where(blocked_at: nil) }
 
   def super?
     self.is_superadmin
   end
 
+  def verified?
+    self.verified_at.present?
+  end
+
+  def verify!
+    update(verified_at: Time.current)
+  end
+
+  def blocked?
+    blocked_at.present?
+  end
+
+  def block!
+    update(blocked_at: Time.current)
+  end
+
+  def send_verification_email
+    UserMailer.verify(self).deliver_later
+  end
+
   private
 
   def activate_user
-    self.active = true if self.active.nil?
+    self.blocked_at = nil
   end
 end

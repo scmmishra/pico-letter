@@ -18,6 +18,7 @@
 #  fk_rails_...  (email_id => emails.id)
 #  fk_rails_...  (post_id => posts.id)
 #
+
 require 'rails_helper'
 
 RSpec.describe EmailClick, type: :model do
