@@ -9,13 +9,13 @@
   <div class="w-5 pt-px text-stone-400">
     <%= lucide_icon("info", class: "size-[18px]") %>
   </div>
-  <div class="flex-grow leading-normal text-stone-500">
+  <div class="grow leading-normal text-stone-500">
     Update the design of your newsletter emails and public archive page.
   </div>
 </div>
 
 <%= form_with model: @newsletter, url: update_design_settings_path(slug: @newsletter.slug), method: :patch, class: 'mt-8' do |form| %>
-  <div class="max-w-lg space-y-4">
+  <div class="max-w-lg space-y-4 mt-4">
     <div class="space-y-2">
       <%= form.label :primary_color, "Color", class: "ml-px text-stone-500" %>
 
@@ -24,7 +24,7 @@
           <%= form.radio_button :primary_color,
                             theme.primary,
                             class:
-                              "block w-7 h-7 rounded-full border-0 focus:ring-2 focus:ring-[var(--pl-current-color)] !bg-[var(--pl-current-color)]",
+                              "block w-7 h-7 rounded-full border-0 focus:ring-2 focus:ring-[var(--pl-current-color)] bg-(--pl-current-color)!",
                             style: "--pl-current-color: #{theme.primary}",
                             id: "color_#{theme.name.downcase}",
                             title: theme.name %>
@@ -39,8 +39,7 @@
           for="font-serif"
           class="
             px-4 py-1 font-serif text-lg border-0 rounded-md ring-1 ring-stone-300
-            ring-inset text-stone-500 has-[:checked]:bg-stone-100
-            has-[:checked]:text-stone-900
+            ring-inset text-stone-500 has-checked:bg-stone-100 has-checked:text-stone-900
           "
         >
           <%= form.radio_button :font_preference, "serif", class: "sr-only", id: "font-serif" %>
@@ -50,7 +49,7 @@
           for="font-sans-serif"
           class="
             px-4 py-1 font-sans text-lg border-0 rounded-md ring-1 ring-stone-300 ring-inset
-            text-stone-500 has-[:checked]:bg-stone-100 has-[:checked]:text-stone-900
+            text-stone-500 has-checked:bg-stone-100 has-checked:text-stone-900
           "
         >
           <%= form.radio_button :font_preference,
@@ -63,7 +62,7 @@
           for="font-mono"
           class="
             px-4 py-1 font-mono text-lg border-0 rounded-md ring-1 ring-stone-300 ring-inset
-            text-stone-500 has-[:checked]:bg-stone-100 has-[:checked]:text-stone-900
+            text-stone-500 has-checked:bg-stone-100 has-checked:text-stone-900
           "
         >
           <%= form.radio_button :font_preference,
